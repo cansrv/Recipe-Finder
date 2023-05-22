@@ -1,1 +1,9 @@
-
+spring:
+  datasource:
+    password:
+    url:
+    username:
+    driver-class-name:
+  jpa:
+    hibernate:
+      ddl-auto:
