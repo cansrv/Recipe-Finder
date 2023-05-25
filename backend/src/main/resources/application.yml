@@ -1,9 +1,9 @@
 spring:
   datasource:
-    password:
-    url:
-    username:
-    driver-class-name:
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/recipe_finder
+    username: postgres
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto:
+      ddl-auto: create-drop
