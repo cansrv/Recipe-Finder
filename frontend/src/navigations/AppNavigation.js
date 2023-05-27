@@ -12,11 +12,18 @@ import IngredientScreen from '../screens/Ingredient/IngredientScreen';
 import SearchScreen from '../screens/Search/SearchScreen';
 import IngredientsDetailsScreen from '../screens/IngredientsDetails/IngredientsDetailsScreen';
 import AllIngreditensScreen from '../screens/IngredientsDetails/AllIngredientsscreen';
+import LoginScreen from '../screens/Auth/LoginScreen';
+import { useSelector } from 'react-redux';
+import RegisterScreen from '../screens/Auth/SignUpScreen';
 
 const Stack = createStackNavigator();
 
 function MainNavigator() {
-  return (
+  //const { isLoggedIn } =
+  const isLoggedIn = useSelector((state) => state.loginReducer.isLoggedIn);
+  //console.log(isLoggedIn);
+  //const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  return isLoggedIn ? (
     <Stack.Navigator
       screenOptions={{
         headerTitleStyle: {
@@ -27,6 +34,7 @@ function MainNavigator() {
         },
       }}
     >
+      {/*<Stack.Screen name='Login' component={LoginScreen} />*/}
       <Stack.Screen name='Home' component={HomeScreen} />
       <Stack.Screen name='Categories' component={CategoriesScreen} />
       <Stack.Screen name='Recipe' component={RecipeScreen} />
@@ -39,6 +47,20 @@ function MainNavigator() {
         name='IngredientsDetails'
         component={IngredientsDetailsScreen}
       />
+    </Stack.Navigator>
+  ) : (
+    <Stack.Navigator
+    //screenOptions={{
+    //  headerTitleStyle: {
+    //    fontWeight: 'bold',
+    //    textAlign: 'center',
+    //    alignSelf: 'center',
+    //    flex: 1,
+    //  },
+    //}}
+    >
+      <Stack.Screen name='Login' component={LoginScreen} />
+      <Stack.Screen name='RegisterScreen' component={RegisterScreen} />
     </Stack.Navigator>
   );
 }
