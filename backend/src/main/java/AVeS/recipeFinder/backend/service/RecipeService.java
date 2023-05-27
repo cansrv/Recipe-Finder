@@ -39,6 +39,10 @@ public class RecipeService {
         return recipeRepository.findRecipesByTagsContains(tag);
     }
 
+    public List<Recipe> searchRecipesByTags(List<String> tags) {
+        return recipeRepository.findRecipesByTagsIn(tags);
+    }
+
     public List<Recipe> searchRecipesByDuration(int duration) {
         return recipeRepository.findRecipesByDurationLessThanEqual(duration);
     }
@@ -52,8 +56,7 @@ public class RecipeService {
     }
 
     public void updateRecipe(Recipe recipe) {
-        Recipe r = recipeRepository.findRecipeByName(recipe.getName());
-        recipeRepository.delete(r);
+       deleteRecipe(recipe.getId());
         recipeRepository.save(recipe);
     }
 }
