@@ -20,24 +20,24 @@ public class Recipe {
     private Long id;
     private String name;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> tags;
 
     private String steps;
 
     private String description;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Component> components;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Rating> ratings;
 
     private int duration;
 
     private String category;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private Nutrition nutrition;
 
 }
