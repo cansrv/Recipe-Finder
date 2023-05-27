@@ -28,7 +28,7 @@ public class RecipeService {
     }
 
     public List<Recipe> searchRecipesByName(String name) {
-        return recipeRepository.findRecipesByNameLike(name);
+        return recipeRepository.findRecipesByNameContaining(name);
     }
 
     public List<Recipe> searchRecipesByCategory(String category) {

@@ -9,7 +9,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     public Recipe findRecipeByName(String name);
 
-    public List<Recipe> findRecipesByNameLike(String name);
+    public List<Recipe> findRecipesByNameContaining(String name);
 
     public List<Recipe> findRecipesByCategoryContaining(String category);
 
