@@ -36,11 +36,6 @@ public class IngredientService {
         return ingredientRepository.save(ingredient);
     }
 
-    public List<Ingredient> findByName (String name)
-    {
-        return ingredientRepository.findIngredientsByName(name);
-    }
-
     public List<Ingredient> searchByName (String name){
         return ingredientRepository.searchIngredientsByName(name);
     }
