@@ -13,11 +13,11 @@ import lombok.Setter;
 @Entity
 public class Component {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     private Ingredient ingredient;
     private Double quantity;
     private String unit;
