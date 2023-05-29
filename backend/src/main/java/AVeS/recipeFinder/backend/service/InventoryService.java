@@ -66,7 +66,7 @@ public class InventoryService {
     }
 
     public List<Inventory> getCustomerFridge(Long customerId) {
-        return inventoryRepository.findByCustomer(customerId);
+        return inventoryRepository.findInventoriesByCustomerEquals(customerId);
     }
 
     public List<Inventory> searchInventoryByName(String searchTerm, Long customerId){

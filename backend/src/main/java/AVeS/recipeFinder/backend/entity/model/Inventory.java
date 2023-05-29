@@ -23,7 +23,7 @@ public class Inventory {
     @JoinColumn(name = "ingredientId", insertable = false, updatable = false)
     private Ingredient ingredient;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customerId", insertable = false, updatable = false)
     private Customer customer;
 
