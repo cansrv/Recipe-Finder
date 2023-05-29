@@ -1,6 +1,6 @@
 package AVeS.recipeFinder.backend.service;
 
-import AVeS.recipeFinder.backend.DTO.InventoryDTO;
+import AVeS.recipeFinder.backend.entity.dto.InventoryDTO;
 import AVeS.recipeFinder.backend.entity.model.Inventory;
 import AVeS.recipeFinder.backend.repository.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;

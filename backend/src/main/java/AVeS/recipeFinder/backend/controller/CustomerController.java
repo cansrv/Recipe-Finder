@@ -1,7 +1,7 @@
 package AVeS.recipeFinder.backend.controller;
 
 
-import AVeS.recipeFinder.backend.DTO.CustomerDTO;
+import AVeS.recipeFinder.backend.entity.dto.CustomerDTO;
 import AVeS.recipeFinder.backend.entity.model.Customer;
 import AVeS.recipeFinder.backend.service.CustomerService;
 import lombok.RequiredArgsConstructor;
