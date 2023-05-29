@@ -20,11 +20,9 @@ public class Inventory {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "ingredientId", insertable = false, updatable = false)
     private Ingredient ingredient;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "customerId", insertable = false, updatable = false)
     private Customer customer;
 
     private Double quantity;
