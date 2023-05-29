@@ -51,7 +51,6 @@ public class InventoryService {
 
         inventory.setQuantity(inventory.getQuantity() - consumedAmount);
 
-        inventoryRepository.deleteById(id);
         inventoryRepository.save(inventory);
     }
 
@@ -61,7 +60,6 @@ public class InventoryService {
 
         inventory.setQuantity(inventory.getQuantity() + addedAmount);
 
-        inventoryRepository.deleteById(id);
         inventoryRepository.save(inventory);
     }
 

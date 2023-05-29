@@ -83,13 +83,22 @@ public class InventoryTest {
                 .build();
 
         inventoryService.addInventory(newInventory);
-        inventoryRepository.save(inventory);
+        //inventoryRepository.save(inventory);
 
 
-        List<Inventory> fridge = inventoryService.getCustomerFridge(customerId);
+        List<Inventory> fridge = inventoryService.getCustomerFridge(1L);
+        System.out.println(fridge.get(0).getQuantity());
+        inventoryService.incrementInventoryQuantity(1L, 3);
+        List<Inventory> fridge2 = inventoryService.getCustomerFridge(1L);
+        System.out.println(fridge2.get(0).getQuantity());
 
-        System.out.println(fridge);
+        inventoryService.decrementInventoryQuantity(1L, 2);
+        List<Inventory> fridge3 = inventoryService.getCustomerFridge(1L);
+        System.out.println(fridge3.get(0).getQuantity());
 
+        System.out.println(inventoryService.searchInventoryByName("st", 1L).get(0).getIngredient().getName());
 
+        inventoryService.deleteInventory(1L);
+        System.out.println(inventoryRepository.findInventoryById(1L));
     }
 }

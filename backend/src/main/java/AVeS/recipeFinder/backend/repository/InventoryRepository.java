@@ -16,7 +16,10 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long> {
             "where i.customer.id = :id")
     List<Inventory>findByCustomer(@Param("id")Long id);
 
-    public List<Inventory> findInventoriesByCustomerEquals(Long customer);
+
+    @Query("select i from Inventory i " +
+            "where i.customer.id = :id")
+    public List<Inventory> findInventoriesByCustomerEquals(@Param("id")Long id);
 
     @Query("select i from Inventory i " +
             "where i.customer.id = :id and lower(i.ingredient.name) like lower(concat('%', :searchTerm, '%')) ")
