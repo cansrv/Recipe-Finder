@@ -19,4 +19,7 @@ public class Ingredient {
     private String description;
     private String shelfLife;
 
+    @OneToOne
+    private Nutrition nutrition;
+
 }

@@ -21,12 +21,38 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
-    public Customer checkCredentials (String username, String password){
-        Customer customer = customerRepository.findByUsername(username);
+    public void deleteCustomer (Long id){
+        customerRepository.deleteById(id);
+    }
+
+    public void updateCustomer (Customer customer){
+        customerRepository.deleteById(customer.getId());
+        customerRepository.save(customer);
+    }
+
+    public Customer findCustomerById(Long id){
+        return customerRepository.findCustomerById(id);
+    }
+
+    public Customer findCustomerByUsername(String username){
+        return customerRepository.findByUsername(username);
+    }
+
+    public Customer findCustomerByMail(String mail){
+        return customerRepository.findByMail(mail);
+    }
+
+    public Customer checkCredentials (String email, String password){
+        Customer customer = customerRepository.findByMail(email);
         if (customer.getPassword().equals(password))
             return customer;
 
         else
             return null;
     }
+
+    public Boolean existsByUsername(String username){
+        return customerRepository.existsByUsername(username);
+    }
 }
+
