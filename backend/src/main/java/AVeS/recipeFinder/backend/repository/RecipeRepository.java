@@ -1,5 +1,6 @@
 package AVeS.recipeFinder.backend.repository;
 
+import AVeS.recipeFinder.backend.entity.model.Rating;
 import AVeS.recipeFinder.backend.entity.model.Component;
 import AVeS.recipeFinder.backend.entity.model.Ingredient;
 import AVeS.recipeFinder.backend.entity.model.Recipe;
@@ -34,6 +35,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
             "where c.ingredient in :ingredients")
     public List<Recipe> findRecipesByComponents(@Param("ingredients") List<Ingredient> ingredients);
 
+    public Recipe findRecipeByRatingsContaining(Rating rating);
 
 
 }

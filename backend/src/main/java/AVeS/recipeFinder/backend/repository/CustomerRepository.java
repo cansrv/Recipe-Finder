@@ -1,6 +1,7 @@
 package AVeS.recipeFinder.backend.repository;
 
 import AVeS.recipeFinder.backend.entity.model.Customer;
+import AVeS.recipeFinder.backend.entity.model.Rating;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,4 +12,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     Boolean existsByUsername(String username);
     Customer findCustomerById(Long id);
     Customer findByMail(String mail);
+
+    Customer findCustomerByRecipesRatedContaining(Rating rating);
 }
