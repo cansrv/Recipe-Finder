@@ -25,6 +25,7 @@ public class Customer {
     private List<Recipe> recipesCreated;
     @OneToMany
     private List<Rating> recipesRated;
-    @OneToMany
-    private List<Inventory> fridge;
+
+    //@OneToMany
+    //private List<Inventory> fridge;
 }

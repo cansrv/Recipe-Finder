@@ -35,6 +35,36 @@ public class InventoryService {
 
     }
 
+    public void deleteInventory (Long id)
+    {
+        inventoryRepository.deleteById(id);
+    }
+
+    public void updateInventory(Inventory inventory){
+        inventoryRepository.deleteById(inventory.getId());
+        inventoryRepository.save(inventory);
+    }
+
+    public void decrementInventoryQuantity(Long id, double consumedAmount){
+
+        Inventory inventory = inventoryRepository.findInventoryById(id);
+
+        inventory.setQuantity(inventory.getQuantity() - consumedAmount);
+
+        inventoryRepository.deleteById(id);
+        inventoryRepository.save(inventory);
+    }
+
+    public void incrementInventoryQuantity(Long id, double addedAmount){
+
+        Inventory inventory = inventoryRepository.findInventoryById(id);
+
+        inventory.setQuantity(inventory.getQuantity() + addedAmount);
+
+        inventoryRepository.deleteById(id);
+        inventoryRepository.save(inventory);
+    }
+
     public List<Inventory> getCustomerFridge(Long customerId) {
         return inventoryRepository.findByCustomer(customerId);
     }

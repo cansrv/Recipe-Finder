@@ -20,6 +20,8 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long> {
             "where i.customer.id = :id and lower(i.ingredient.name) like lower(concat('%', :searchTerm, '%')) ")
     List<Inventory> searchInventoryByIngredient(@Param("searchTerm") String searchTerm,@Param("id")Long id );
 
+    Inventory findInventoryById(Long id);
+
 
 
 }
