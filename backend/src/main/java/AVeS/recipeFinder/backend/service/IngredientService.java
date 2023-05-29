@@ -1,9 +1,8 @@
 package AVeS.recipeFinder.backend.service;
 
 
-import AVeS.recipeFinder.backend.DTO.IngredientDTO;
+import AVeS.recipeFinder.backend.entity.dto.IngredientDTO;
 import AVeS.recipeFinder.backend.entity.model.Ingredient;
-import AVeS.recipeFinder.backend.entity.model.Recipe;
 import AVeS.recipeFinder.backend.repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

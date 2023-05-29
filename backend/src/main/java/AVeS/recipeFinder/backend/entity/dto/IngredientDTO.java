@@ -1,4 +1,4 @@
-package AVeS.recipeFinder.backend.DTO;
+package AVeS.recipeFinder.backend.entity.dto;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
