@@ -40,4 +40,16 @@ public class Recipe {
     @OneToOne(fetch = FetchType.EAGER)
     private Nutrition nutrition;
 
+    public void addRating(Rating r) {
+        ratings.add(r);
+    }
+
+    public void removeRating(Rating r) {
+        for (Rating rating: ratings) {
+            if (rating.getId().equals(r.getId())) {
+                ratings.remove(rating);
+                break;
+            }
+        }
+    }
 }

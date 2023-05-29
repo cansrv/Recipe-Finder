@@ -1,5 +1,6 @@
 package AVeS.recipeFinder.backend.repository;
 
+import AVeS.recipeFinder.backend.entity.model.Rating;
 import AVeS.recipeFinder.backend.entity.model.Recipe;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -19,6 +20,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     public List<Recipe> findRecipesByDurationLessThanEqual(int duration);
 
+    public Recipe findRecipeByRatingsContaining(Rating rating);
 
 
 }

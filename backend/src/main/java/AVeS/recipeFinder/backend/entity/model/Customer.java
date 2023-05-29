@@ -23,9 +23,19 @@ public class Customer {
 
     @OneToMany
     private List<Recipe> recipesCreated;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Rating> recipesRated;
 
-    //@OneToMany
-    //private List<Inventory> fridge;
+    public void addRating(Rating rating) {
+        this.recipesRated.add(rating);
+    }
+
+    public void removeRating(Rating rating) {
+        for (Rating r: this.recipesRated) {
+            if (r.getId().equals(rating.getId())) {
+                this.recipesRated.remove(r);
+                break;
+            }
+        }
+    }
 }
