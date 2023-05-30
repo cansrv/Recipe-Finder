@@ -3,6 +3,7 @@ package AVeS.recipeFinder.backend.service;
 
 import AVeS.recipeFinder.backend.entity.dto.IngredientDTO;
 import AVeS.recipeFinder.backend.entity.model.Ingredient;
+import AVeS.recipeFinder.backend.entity.model.Nutrition;
 import AVeS.recipeFinder.backend.repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +15,12 @@ public class IngredientService {
 
     private IngredientRepository ingredientRepository;
 
+    private NutritionService nutritionService;
+
     @Autowired
-    public IngredientService(IngredientRepository ingredientRepository) {
+    public IngredientService(IngredientRepository ingredientRepository, NutritionService nutritionService) {
         this.ingredientRepository = ingredientRepository;
+        this.nutritionService = nutritionService;
 
     }
 
@@ -25,11 +29,19 @@ public class IngredientService {
 
     }
 
+    public List<Ingredient> getAllIngredients(){
+        return ingredientRepository.findAll();
+    }
+
     public Ingredient addIngredient (IngredientDTO ingredientDTO){
+
+        Nutrition nutrition = nutritionService.addNutrition(ingredientDTO.getNutrition());
+
         Ingredient ingredient = Ingredient.builder()
                 .name(ingredientDTO.getName())
                 .description(ingredientDTO.getDescription())
                 .shelfLife(ingredientDTO.getShelfLife())
+                .nutrition(nutrition)
                 .build();
 
         return ingredientRepository.save(ingredient);

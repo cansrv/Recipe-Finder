@@ -75,11 +75,11 @@ public class InventoryTest {
 
         List<Inventory> fridge = inventoryService.getCustomerFridge(1L);
         assertEquals(3.0, fridge.get(0).getQuantity());
-        inventoryService.incrementInventoryQuantity(1L, 3);
+        inventoryService.incrementInventoryQuantity(1L, 3.0);
         List<Inventory> fridge2 = inventoryService.getCustomerFridge(1L);
         assertEquals(6.0, fridge2.get(0).getQuantity());
 
-        inventoryService.decrementInventoryQuantity(1L, 2);
+        inventoryService.decrementInventoryQuantity(1L, 2.0);
         List<Inventory> fridge3 = inventoryService.getCustomerFridge(1L);
         assertEquals(4.0, fridge3.get(0).getQuantity());
 
