@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import {
   FlatList,
   Text,
@@ -11,11 +11,26 @@ import styles from './styles';
 import { recipes } from '../../data/dataArrays';
 import MenuImage from '../../components/MenuImage/MenuImage';
 import { getCategoryName } from '../../data/MockDataAPI';
+import RecipeImg from '../../../assets/recipe.png';
+import axios from 'axios';
+import { useIsFocused } from '@react-navigation/native';
 
 export default function HomeScreen(props) {
   const { navigation } = props;
+  const [recipes, setRecipes] = useState([]);
+  const isFocused = useIsFocused();
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/recipe').then((res) => {
+      console.log(res.data);
+      setRecipes(res.data);
+    });
+  }, [isFocused]);
 
   useLayoutEffect(() => {
+    //axios.get('http://localhost:8080/api/recipe').then((res) => {
+    //  console.log(res.data);
+    //  setRecipes(res.data);
+    //});
     navigation.setOptions({
       headerLeft: () => (
         <MenuImage
@@ -38,9 +53,9 @@ export default function HomeScreen(props) {
       onPress={() => onPressRecipe(item)}
     >
       <View style={styles.container}>
-        <Image style={styles.photo} source={{ uri: item.photo_url }} />
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text>
+        <Image style={styles.photo} source={RecipeImg} />
+        <Text style={styles.title}>{item.name}</Text>
+        <Text style={styles.category}>{item.category}</Text>
       </View>
     </TouchableHighlight>
   );
@@ -72,7 +87,10 @@ export default function HomeScreen(props) {
           </Text>
         </View>
         <View style={{ alignItems: 'flex-end', marginLeft: 'auto' }}>
-          <Button title='Post a Recipe'>
+          <Button
+            title='Post a Recipe'
+            onPress={() => navigation.navigate('Post')}
+          >
             {/*<Text>{'Post a Rating'}</Text>*/}
           </Button>
         </View>
