@@ -15,6 +15,7 @@ import AllIngreditensScreen from '../screens/IngredientsDetails/AllIngredientssc
 import LoginScreen from '../screens/Auth/LoginScreen';
 import { useSelector } from 'react-redux';
 import RegisterScreen from '../screens/Auth/SignUpScreen';
+import PostRecipeScreen from '../screens/PostRecipe/PostRecipeScreen';
 
 const Stack = createStackNavigator();
 
@@ -43,6 +44,7 @@ function MainNavigator() {
       <Stack.Screen name='Search' component={SearchScreen} />
       <Stack.Screen name='Fridge' component={Fridge} />
       <Stack.Screen name='Ingredients' component={AllIngreditensScreen} />
+      <Stack.Screen name='Post' component={PostRecipeScreen} />
       <Stack.Screen
         name='IngredientsDetails'
         component={IngredientsDetailsScreen}

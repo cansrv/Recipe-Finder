@@ -44,7 +44,7 @@ const LoginScreen = ({ navigation }) => {
     let formBody = [];
 
     axios
-      .post('http://localhost:8080/api/v1/auth/signin', dataToSend)
+      .post('http://localhost:8080/api/auth/signin', dataToSend)
       .then((response) => {
         if (response.data) {
           dispatch(login({ userEmail, userPassword }));

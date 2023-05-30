@@ -13,15 +13,18 @@ import {
   getRecipesByIngredient,
   getCategoryName,
 } from '../../data/MockDataAPI';
-
+import RecipeImg from '../../../assets/recipe.png';
 export default function IngredientScreen(props) {
   const { navigation, route } = props;
 
-  const ingredientId = route.params?.ingredient;
-  const ingredientUrl = getIngredientUrl(ingredientId);
+  const ingredientId = route.params?.ingredient.id;
+  const ingredient = route.params?.ingredient;
+  const nutritiom = route.params?.ingredient.nutrition;
+  //const ingredientUrl = getIngredientUrl(ingredientId);
   const ingredientName = route.params?.name;
 
   useLayoutEffect(() => {
+    console.log(ingredient);
     navigation.setOptions({
       title: route.params?.name,
     });
@@ -41,7 +44,7 @@ export default function IngredientScreen(props) {
         onPress={() => onPressRecipe(item)}
       >
         <View style={styles.container}>
-          <Image style={styles.photo} source={{ uri: item.photo_url }} />
+          <Image style={styles.photo} source={RecipeImg} />
           <Text style={styles.title}>{item.title}</Text>
           <Text style={styles.category}>
             {getCategoryName(item.categoryId)}
@@ -60,18 +63,21 @@ export default function IngredientScreen(props) {
           borderBottomColor: 'grey',
         }}
       >
-        <Image
-          style={styles.photoIngredient}
-          source={{ uri: '' + ingredientUrl }}
-        />
+        <Image style={styles.photoIngredient} source={RecipeImg} />
       </View>
       <Text style={styles.ingredientInfo}>
         Nutrition Facts of {ingredientName}:
       </Text>
-      <Text style={styles.ingredientInfo}>Fat: 5g</Text>
-      <Text style={styles.ingredientInfo}>Carbs: 5g</Text>
-      <Text style={styles.ingredientInfo}>Protein: 5g</Text>
-      <Text style={styles.ingredientInfo}>Total Calories: 100kCal</Text>
+      <Text style={styles.ingredientInfo}>{`Fat: ${nutritiom.fat}g`}</Text>
+      <Text
+        style={styles.ingredientInfo}
+      >{`Carbs: ${nutritiom.carbohydrate}g`}</Text>
+      <Text
+        style={styles.ingredientInfo}
+      >{`Protein: ${nutritiom.protein}g`}</Text>
+      <Text
+        style={styles.ingredientInfo}
+      >{`Total Calories: ${nutritiom.calorie}kCal`}</Text>
 
       <Text style={styles.ingredientInfo}>Recipes with {ingredientName}:</Text>
       <View>
@@ -79,9 +85,9 @@ export default function IngredientScreen(props) {
           vertical
           showsVerticalScrollIndicator={false}
           numColumns={2}
-          data={getRecipesByIngredient(ingredientId)}
-          renderItem={renderRecipes}
-          keyExtractor={(item) => `${item.recipeId}`}
+          //data={getRecipesByIngredient(ingredientId)}
+          //renderItem={renderRecipes}
+          //keyExtractor={(item) => `${item.recipeId}`}
         />
       </View>
     </ScrollView>

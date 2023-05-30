@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
   user: null,
-  isLoggedIn: false,
+  isLoggedIn: true,
 };
 
 export const loginReducer = (state = initialState, action) => {

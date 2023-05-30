@@ -16,6 +16,7 @@ import {
 } from '../../data/MockDataAPI';
 import BackButton from '../../components/BackButton/BackButton';
 import ViewIngredientsButton from '../../components/ViewIngredientsButton/ViewIngredientsButton';
+import RecipeImg from '../../../assets/recipe.png';
 
 const { width: viewportWidth } = Dimensions.get('window');
 
@@ -23,8 +24,8 @@ export default function RecipeScreen(props) {
   const { navigation, route } = props;
 
   const item = route.params?.item;
-  const category = getCategoryById(item.categoryId);
-  const title = getCategoryName(category.id);
+  const category = route.params?.item.category;
+  const title = route.params?.item.name;
 
   const [activeSlide, setActiveSlide] = useState(0);
 
@@ -47,7 +48,7 @@ export default function RecipeScreen(props) {
   const renderImage = ({ item }) => (
     <TouchableHighlight>
       <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{ uri: item }} />
+        <Image style={styles.image} source={item} />
       </View>
     </TouchableHighlight>
   );
@@ -62,9 +63,12 @@ export default function RecipeScreen(props) {
     <ScrollView style={styles.container}>
       <View style={styles.carouselContainer}>
         <View style={styles.carousel}>
-          <Carousel
+          <View style={styles.imageContainer}>
+            <Image style={styles.image} source={RecipeImg} />
+          </View>
+          {/*<Carousel
             ref={slider1Ref}
-            data={item.photosArray}
+            data={RecipeImg}
             renderItem={renderImage}
             sliderWidth={viewportWidth}
             itemWidth={viewportWidth}
@@ -75,10 +79,10 @@ export default function RecipeScreen(props) {
             autoplay={false}
             autoplayDelay={500}
             autoplayInterval={3000}
-            onSnapToItem={(index) => setActiveSlide(0)}
+            //onSnapToItem={(index) => setActiveSlide(0)}
           />
           <Pagination
-            dotsLength={item.photosArray.length}
+            //dotsLength={item.photosArray.length}
             activeDotIndex={activeSlide}
             containerStyle={styles.paginationContainer}
             dotColor='rgba(255, 255, 255, 0.92)'
@@ -88,20 +92,18 @@ export default function RecipeScreen(props) {
             inactiveDotScale={0.6}
             carouselRef={slider1Ref.current}
             tappableDots={!!slider1Ref.current}
-          />
+          />*/}
         </View>
       </View>
       <View style={styles.infoRecipeContainer}>
-        <Text style={styles.infoRecipeName}>{item.title}</Text>
+        <Text style={styles.infoRecipeName}>{item.name}</Text>
         <View style={styles.infoContainer}>
           <TouchableHighlight
             onPress={() =>
               navigation.navigate('RecipesList', { category, title })
             }
           >
-            <Text style={styles.category}>
-              {getCategoryName(item.categoryId).toUpperCase()}
-            </Text>
+            <Text style={styles.category}>{item.category.toUpperCase()}</Text>
           </TouchableHighlight>
         </View>
 
@@ -110,7 +112,7 @@ export default function RecipeScreen(props) {
             style={styles.infoPhoto}
             source={require('../../../assets/icons/time.png')}
           />
-          <Text style={styles.infoRecipe}>{item.time} minutes </Text>
+          <Text style={styles.infoRecipe}>{item.duration} minutes </Text>
         </View>
         <View style={styles.infoContainer}>
           <Text style={styles.infoRecipe}>{'Rating: 4.75'} </Text>
@@ -119,8 +121,8 @@ export default function RecipeScreen(props) {
         <View style={styles.infoContainer}>
           <ViewIngredientsButton
             onPress={() => {
-              let ingredients = item.ingredients;
-              let title = 'Ingredients for ' + item.title;
+              let ingredients = item.components;
+              let title = 'Ingredients for ' + item.name;
               navigation.navigate('IngredientsDetails', { ingredients, title });
             }}
           />
