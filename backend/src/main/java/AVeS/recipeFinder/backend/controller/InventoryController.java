@@ -25,9 +25,19 @@ public class InventoryController {
         return inventoryService.addInventory(inventory);
     }
 
+    @DeleteMapping()
+    public void deleteInventory(@RequestParam Long id){
+        inventoryService.deleteInventory(id);
+    }
+
     @PostMapping("/consume")
     public void consumeInventory(@RequestParam Long customerId, @RequestParam Long recipeId){
         inventoryService.consumeRecipeIngredients(customerId, recipeId);
+    }
+
+    @DeleteMapping("/deleteByIngredient")
+    public void deleteInventoryByIngredient(@RequestParam Long customerId, @RequestParam Long ingredientId){
+        inventoryService.deleteInventoryByIngredient(customerId, ingredientId);
     }
 
 

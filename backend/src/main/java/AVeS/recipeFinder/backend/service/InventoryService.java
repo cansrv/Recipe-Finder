@@ -52,6 +52,10 @@ public class InventoryService {
         inventoryRepository.deleteById(id);
     }
 
+    public void deleteInventoryByIngredient(Long customerId, Long ingredientId) {
+        inventoryRepository.deleteInventoryByCustomerAndIngredient(customerId, ingredientId);
+    }
+
     public void updateInventory(Inventory inventory){
         inventoryRepository.deleteById(inventory.getId());
         inventoryRepository.save(inventory);
