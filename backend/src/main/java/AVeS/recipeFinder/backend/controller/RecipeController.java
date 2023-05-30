@@ -8,6 +8,7 @@ import AVeS.recipeFinder.backend.service.RecipeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -81,5 +82,13 @@ public class RecipeController {
     public Boolean isRecipeAvailable(@RequestParam Long customerId, @RequestParam Long recipeId){
         return recipeService.isRecipeAvailable(customerId, recipeId);
     }
+
+    @GetMapping("/searchByIngredient")
+    public List<Recipe> searchRecipesByIngredients(Long ingredientId){
+        return recipeService.findRecipesByIngredientIds(Arrays.asList(ingredientId));
+    }
+
+
+
 
 }

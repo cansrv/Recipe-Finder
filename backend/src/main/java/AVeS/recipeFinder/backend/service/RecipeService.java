@@ -25,6 +25,9 @@ public class RecipeService {
     @Resource
     private NutritionService nutritionService;
 
+    @Resource
+    private IngredientService ingredientService;
+
 
 
 
@@ -114,6 +117,11 @@ public class RecipeService {
 
     public List<Recipe> findRecipesByIngredients(List<Ingredient> ingredients) {
         return recipeRepository.findRecipesByIngredients(ingredients, ingredients.size());
+    }
+
+    public List<Recipe> findRecipesByIngredientIds(List<Long> ingredientIds) {
+        List<Ingredient> ingredients = ingredientIds.stream().map(id -> ingredientService.getIngredientById(id)).toList();
+        return findRecipesByIngredients(ingredients);
     }
 
     // find insufficient inventory items for a recipe and return the missing items with the quantity needed

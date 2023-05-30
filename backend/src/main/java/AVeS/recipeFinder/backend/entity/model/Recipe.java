@@ -23,6 +23,8 @@ public class Recipe {
 
     private String steps;
 
+    // set the length of the description to 1000 characters
+    @Column(length = 3000)
     private String description;
 
     @OneToMany(fetch = FetchType.EAGER)
