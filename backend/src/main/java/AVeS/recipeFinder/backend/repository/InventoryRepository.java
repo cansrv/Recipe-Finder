@@ -28,9 +28,9 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long> {
     Inventory findInventoryById(Long id);
 
     // delete inventory by customer and ingredient
-    @Query("delete from Inventory i " +
+    @Query("select i from Inventory i " +
             "where i.customer.id = :customerId and i.ingredient.id = :ingredientId")
-    void deleteInventoryByCustomerAndIngredient(@Param("customerId") Long customerId, @Param("ingredientId") Long ingredientId);
+    Inventory findInventoryByCustomerAndIngredient(@Param("customerId") Long customerId, @Param("ingredientId") Long ingredientId);
 
 
 

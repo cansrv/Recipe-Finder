@@ -53,7 +53,7 @@ public class InventoryService {
     }
 
     public void deleteInventoryByIngredient(Long customerId, Long ingredientId) {
-        inventoryRepository.deleteInventoryByCustomerAndIngredient(customerId, ingredientId);
+        inventoryRepository.delete(inventoryRepository.findInventoryByCustomerAndIngredient(customerId, ingredientId));
     }
 
     public void updateInventory(Inventory inventory){
