@@ -32,10 +32,8 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     // find recipes by components that has the all the ingredients in the list
     @Query("SELECT r FROM Recipe r " +
             "INNER JOIN r.components c " +
-            "WHERE c.ingredient IN :ingredients " +
-            "GROUP BY r " +
-            "HAVING COUNT(DISTINCT c.ingredient) = :ingredientCount")
-    public List<Recipe> findRecipesByIngredients(@Param("ingredients") List<Ingredient> ingredients, @Param("ingredientCount") int ingredientCount);
+            "WHERE c.ingredient IN :ingredients ")
+    public List<Recipe> findRecipesByIngredients(@Param("ingredients") List<Ingredient> ingredients);
 
 
     public Recipe findRecipeByRatingsContaining(Rating rating);

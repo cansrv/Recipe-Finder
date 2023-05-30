@@ -116,7 +116,7 @@ public class RecipeService {
     }
 
     public List<Recipe> findRecipesByIngredients(List<Ingredient> ingredients) {
-        return recipeRepository.findRecipesByIngredients(ingredients, ingredients.size());
+        return recipeRepository.findRecipesByIngredients(ingredients);
     }
 
     public List<Recipe> findRecipesByIngredientIds(List<Long> ingredientIds) {
