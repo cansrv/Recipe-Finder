@@ -13,6 +13,7 @@ import {
 
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/actions/actionFunctions';
+import axios from 'axios';
 
 //import AsyncStorage from '@react-native-community/async-storage';
 
@@ -28,20 +29,32 @@ const LoginScreen = ({ navigation }) => {
   const passwordInputRef = createRef();
 
   const handleSubmitPress = () => {
-    dispatch(login({ userEmail, userPassword }));
     //navigation.navigate('Home');
     //setErrortext('');
-    //if (!userEmail) {
-    //  alert('Please fill Email');
-    //  return;
-    //}
-    //if (!userPassword) {
-    //  alert('Please fill Password');
-    //  return;
-    //}
-    //setLoading(true);
-    //let dataToSend = { email: userEmail, password: userPassword };
-    //let formBody = [];
+    if (!userEmail) {
+      alert('Please fill Email');
+      return;
+    }
+    if (!userPassword) {
+      alert('Please fill Password');
+      return;
+    }
+    setLoading(true);
+    let dataToSend = { mail: userEmail, password: userPassword };
+    let formBody = [];
+
+    axios
+      .post('http://localhost:8080/api/v1/auth/signin', dataToSend)
+      .then((response) => {
+        if (response.data) {
+          dispatch(login({ userEmail, userPassword }));
+        }
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     //for (let key in dataToSend) {
     //  let encodedKey = encodeURIComponent(key);
     //  let encodedValue = encodeURIComponent(dataToSend[key]);

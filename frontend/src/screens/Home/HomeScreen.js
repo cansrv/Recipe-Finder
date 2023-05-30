@@ -1,5 +1,12 @@
 import React, { useLayoutEffect } from 'react';
-import { FlatList, Text, View, TouchableHighlight, Image } from 'react-native';
+import {
+  FlatList,
+  Text,
+  View,
+  TouchableHighlight,
+  Image,
+  Button,
+} from 'react-native';
 import styles from './styles';
 import { recipes } from '../../data/dataArrays';
 import MenuImage from '../../components/MenuImage/MenuImage';
@@ -40,18 +47,36 @@ export default function HomeScreen(props) {
 
   return (
     <View>
-      <Text
-        style={{
-          color: 'black ',
-          marginLeft: '5%',
-          marginTop: '5%',
-          marginBottom: '5%',
-          fontSize: 20,
-          fontWeight: 'bold',
-        }}
-      >
-        {'Welcome, Can!'}
-      </Text>
+      <View style={{ width: '100%', flexDirection: 'row' }}>
+        <View
+          style={{
+            color: 'black ',
+            //marginLeft: '5%',
+            //marginTop: '5%',
+            //marginBottom: '5%',
+            fontSize: 20,
+            fontWeight: 'bold',
+          }}
+        >
+          <Text
+            style={{
+              color: 'black ',
+              marginLeft: '5%',
+              marginTop: '5%',
+              marginBottom: '5%',
+              fontSize: 20,
+              fontWeight: 'bold',
+            }}
+          >
+            {'Welcome, Can!'}
+          </Text>
+        </View>
+        <View style={{ alignItems: 'flex-end', marginLeft: 'auto' }}>
+          <Button title='Post a Recipe'>
+            {/*<Text>{'Post a Rating'}</Text>*/}
+          </Button>
+        </View>
+      </View>
       <FlatList
         vertical
         showsVerticalScrollIndicator={false}

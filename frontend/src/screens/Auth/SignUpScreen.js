@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
+import axios from 'axios';
 
 //import Loader from './Components/Loader';
 
@@ -53,8 +54,8 @@ const RegisterScreen = (props) => {
     //Show Loader
     setLoading(true);
     var dataToSend = {
-      name: userName,
-      email: userEmail,
+      username: userName,
+      mail: userEmail,
       //  age: userAge,
       //  address: userAddress,
       password: userPassword,
@@ -67,6 +68,21 @@ const RegisterScreen = (props) => {
     }
     formBody = formBody.join('&');
     console.log(dataToSend);
+
+    axios
+      .post('http://localhost:8080/api/v1/auth/register', dataToSend)
+      .then((res) => {
+        //console.log(res);
+        //console.log(res.data);
+        if (res.data) {
+          setIsRegistraionSuccess(true);
+          console.log('Registration Successful. Please Login to proceed');
+        }
+      })
+      .catch((error) => {
+        //Hide Loader
+        console.log(error);
+      });
 
     //fetch('http://localhost:3000/api/user/register', {
     //  method: 'POST',
