@@ -24,7 +24,7 @@ export default function HomeScreen(props) {
       console.log(res.data);
       setRecipes(res.data);
     });
-  }, [isFocused]);
+  }, []);
 
   useLayoutEffect(() => {
     //axios.get('http://localhost:8080/api/recipe').then((res) => {

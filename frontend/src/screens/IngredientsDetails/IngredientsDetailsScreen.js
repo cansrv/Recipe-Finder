@@ -10,7 +10,6 @@ export default function IngredientsDetailsScreen(props) {
   const ingredientsArray = item;
 
   useLayoutEffect(() => {
-    console.log(item, 'useeffect');
     navigation.setOptions({
       title: route.params?.title,
       headerTitleStyle: {
@@ -21,26 +20,23 @@ export default function IngredientsDetailsScreen(props) {
 
   const onPressIngredient = (item) => {
     //console.log(ingredientsArray, 'ingredientsArray');
-    console.log(item, 'onPressIngredient');
+    //console.log(item, 'onPressIngredient');
     let name = item.ingredient.name;
     let ingredient = item.ingredient;
     navigation.navigate('Ingredient', { ingredient, name });
   };
 
   const renderIngredient = ({ item }) => (
-    console.log(item, 'renderIngredient'),
-    (
-      <TouchableHighlight
-        underlayColor='rgba(73,182,77,0.9)'
-        onPress={() => onPressIngredient(item)}
-      >
-        <View style={styles.container}>
-          <Image style={styles.photo} source={RecipeImg} />
-          <Text style={styles.title}>{item.ingredient.name}</Text>
-          <Text style={{ color: 'grey' }}>{'item[1]'}</Text>
-        </View>
-      </TouchableHighlight>
-    )
+    <TouchableHighlight
+      underlayColor='rgba(73,182,77,0.9)'
+      onPress={() => onPressIngredient(item)}
+    >
+      <View style={styles.container}>
+        <Image style={styles.photo} source={RecipeImg} />
+        <Text style={styles.title}>{item.ingredient.name}</Text>
+        <Text style={{ color: 'grey' }}>{`${item.quantity}${item.unit}`}</Text>
+      </View>
+    </TouchableHighlight>
   );
 
   return (

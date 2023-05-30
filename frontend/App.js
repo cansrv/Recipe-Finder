@@ -7,6 +7,7 @@ import { Toast } from 'react-native-toast-message/lib/src/Toast';
 
 export default function App() {
   const store = configureStore();
+  console.disableYellowBox = true;
   return (
     <Provider store={store}>
       <Toast />

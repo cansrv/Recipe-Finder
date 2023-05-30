@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import {
   FlatList,
   ScrollView,
@@ -14,14 +14,27 @@ import {
   getCategoryName,
 } from '../../data/MockDataAPI';
 import RecipeImg from '../../../assets/recipe.png';
+import axios from 'axios';
 export default function IngredientScreen(props) {
   const { navigation, route } = props;
+  const [recipes, setRecipes] = React.useState([]);
 
   const ingredientId = route.params?.ingredient.id;
   const ingredient = route.params?.ingredient;
   const nutritiom = route.params?.ingredient.nutrition;
   //const ingredientUrl = getIngredientUrl(ingredientId);
   const ingredientName = route.params?.name;
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:8080/api/recipe/searchByIngredient?ingredientId=${ingredientId}`
+      )
+      .then((res) => {
+        console.log(res.data);
+        setRecipes(res.data);
+      });
+  }, []);
 
   useLayoutEffect(() => {
     console.log(ingredient);
@@ -45,10 +58,8 @@ export default function IngredientScreen(props) {
       >
         <View style={styles.container}>
           <Image style={styles.photo} source={RecipeImg} />
-          <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.category}>
-            {getCategoryName(item.categoryId)}
-          </Text>
+          <Text style={styles.title}>{item.name}</Text>
+          <Text style={styles.category}>{item.category}</Text>
         </View>
       </TouchableHighlight>
     </TouchableHighlight>
@@ -85,9 +96,9 @@ export default function IngredientScreen(props) {
           vertical
           showsVerticalScrollIndicator={false}
           numColumns={2}
-          //data={getRecipesByIngredient(ingredientId)}
-          //renderItem={renderRecipes}
-          //keyExtractor={(item) => `${item.recipeId}`}
+          data={recipes}
+          renderItem={renderRecipes}
+          keyExtractor={(item) => `${item.id}`}
         />
       </View>
     </ScrollView>
