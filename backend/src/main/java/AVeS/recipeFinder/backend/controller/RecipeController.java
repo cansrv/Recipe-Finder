@@ -17,7 +17,7 @@ public class RecipeController {
 
     private final RecipeService recipeService;
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<Recipe> getAllRecipes(){
         return recipeService.getAllRecipes();
     }
@@ -37,12 +37,12 @@ public class RecipeController {
         return recipeService.getRecipeById(id);
     }
 
-    @PostMapping("/delete")
+    @DeleteMapping()
     public void deleteRecipe(@RequestParam Long id){
         recipeService.deleteRecipe(id);
     }
 
-    @PostMapping("/update")
+    @PutMapping()
     public void updateRecipe(Recipe recipe){
         recipeService.updateRecipe(recipe);
     }

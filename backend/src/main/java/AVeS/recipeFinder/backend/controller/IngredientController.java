@@ -25,7 +25,7 @@ public class IngredientController {
         return ingredientService.searchByName(name);
     }
 
-    @GetMapping("/get")
+    @GetMapping()
     public Ingredient getIngredientById(@RequestParam Long id){
         return ingredientService.getIngredientById(id);
     }
@@ -35,12 +35,12 @@ public class IngredientController {
         return ingredientService.addIngredient(ingredientDTO);
     }
 
-    @PostMapping("/delete")
+    @DeleteMapping()
     public void deleteIngredient(@RequestParam Long id){
         ingredientService.deleteIngredient(id);
     }
 
-    @PostMapping("/update")
+    @PutMapping()
     public void updateIngredient(@RequestParam Ingredient ingredient){
         ingredientService.updateIngredient(ingredient);
     }

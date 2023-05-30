@@ -15,12 +15,12 @@ public class InventoryController {
 
     private final InventoryService inventoryService;
 
-    @GetMapping("/find")
+    @GetMapping()
     public List<Inventory> getFridge(@RequestParam Long id){
         return inventoryService.getCustomerFridge(id);
     }
 
-    @PostMapping("/add")
+    @PostMapping()
     public Inventory addInventory(@RequestBody InventoryDTO inventory){
         return inventoryService.addInventory(inventory);
     }
