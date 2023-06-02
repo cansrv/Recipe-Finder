@@ -12,7 +12,7 @@ export default function AllIngreditensScreen(props) {
   const user = useSelector((state) => state.loginReducer.user);
   const { navigation, route } = props;
   useEffect(() => {
-    axios.get('http://localhost:8080/api/ingredient/all').then((res) => {
+    axios.get('http://35.228.238.149:8080/api/ingredient/all').then((res) => {
       console.log(res.data);
       setIngredients(res.data);
     });
@@ -37,7 +37,7 @@ export default function AllIngreditensScreen(props) {
       quantity: item.quantity,
       unit: item.unit,
     };
-    axios.post(`http://localhost:8080/api/inventory`, body).then((res) => {
+    axios.post(`http://35.228.238.149:8080/api/inventory`, body).then((res) => {
       console.log(res.data);
       setIngredients(
         ingredientsArray.filter((ingredient) => ingredient.id !== item.id)

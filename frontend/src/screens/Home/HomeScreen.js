@@ -20,14 +20,14 @@ export default function HomeScreen(props) {
   const [recipes, setRecipes] = useState([]);
   const isFocused = useIsFocused();
   useEffect(() => {
-    axios.get('http://localhost:8080/api/recipe').then((res) => {
+    axios.get('http://35.228.238.149:8080/api/recipe').then((res) => {
       console.log(res.data);
       setRecipes(res.data);
     });
   }, []);
 
   useLayoutEffect(() => {
-    //axios.get('http://localhost:8080/api/recipe').then((res) => {
+    //axios.get('http://35.228.238.149:8080/api/recipe').then((res) => {
     //  console.log(res.data);
     //  setRecipes(res.data);
     //});

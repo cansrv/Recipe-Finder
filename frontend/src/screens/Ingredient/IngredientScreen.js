@@ -28,7 +28,7 @@ export default function IngredientScreen(props) {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:8080/api/recipe/searchByIngredient?ingredientId=${ingredientId}`
+        `http://35.228.238.149:8080/api/recipe/searchByIngredient?ingredientId=${ingredientId}`
       )
       .then((res) => {
         console.log(res.data);

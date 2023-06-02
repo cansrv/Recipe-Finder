@@ -70,7 +70,7 @@ const RegisterScreen = (props) => {
     console.log(dataToSend);
 
     axios
-      .post('http://localhost:8080/api/auth/register', dataToSend)
+      .post('http://35.228.238.149:8080/api/auth/register', dataToSend)
       .then((res) => {
         //console.log(res);
         //console.log(res.data);

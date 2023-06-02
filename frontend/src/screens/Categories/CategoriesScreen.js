@@ -11,7 +11,7 @@ export default function CategoriesScreen(props) {
   const [categories, setCategories] = React.useState([]);
   const { navigation } = props;
   useEffect(() => {
-    axios.get('http://localhost:8080/api/recipe').then((res) => {
+    axios.get('http://35.228.238.149:8080/api/recipe').then((res) => {
       //console.log(res.data, 'res');
       const groupedArray = Object.values(
         res.data.reduce((result, obj) => {

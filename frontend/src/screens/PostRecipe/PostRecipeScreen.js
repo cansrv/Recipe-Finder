@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, Button, TextInput, Pressable } from 'react-native';
 import { ingredients } from '../../data/dataArrays';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -15,6 +15,22 @@ const newIngredients = ingredients.map((ingredient) => {
 });
 
 const PostRecipeScreen = () => {
+  //useEffect(() => {
+  //  axios
+
+  //    .get('http://35.228.238.149:8080/api/ingredient/all')
+  //    .then((resp) => {
+  //      if (resp.data) {
+  //        console.log(resp.data);
+  //        setIngredients(resp.data);
+  //      }
+  //    })
+  //    .catch((err) => console.log(err));
+  //}, []);
+
+  //const resultIngredients = ingredients.map((ingredient) => {
+  //  return {
+
   const textInputRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState([]);
@@ -28,7 +44,7 @@ const PostRecipeScreen = () => {
     let body = {
       components: value.map((item) => {
         return {
-          ingredientId: item,
+          ingredientId: item - 35622,
           quantity: '',
           unit: '',
         };
@@ -41,9 +57,9 @@ const PostRecipeScreen = () => {
       tags: [],
       category: cat,
     };
-    console.log(body.components);
+    console.log(body);
     axios
-      .post('http://localhost:8080/api/recipe/add', body)
+      .post('http://35.228.238.149:8080/api/recipe/add', body)
       .then((resp) => {
         if (resp.data) {
           console.log(resp.data);

@@ -44,7 +44,7 @@ const LoginScreen = ({ navigation }) => {
     let formBody = [];
 
     axios
-      .post('http://localhost:8080/api/auth/signin', dataToSend)
+      .post('http://35.228.238.149:8080/api/auth/signin', dataToSend)
       .then((response) => {
         let id = response.data.id;
         if (response.data) {

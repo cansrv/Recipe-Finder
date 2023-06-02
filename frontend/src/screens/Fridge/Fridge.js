@@ -25,7 +25,7 @@ const Fridge = (props) => {
     console.log('fridge');
     console.log(user);
     axios
-      .get(`http://localhost:8080/api/inventory?id=${user.id}`)
+      .get(`http://35.228.238.149:8080/api/inventory?id=${user.id}`)
       .then((res) => {
         console.log(res.data);
         setFridge(res.data);
@@ -38,7 +38,7 @@ const Fridge = (props) => {
     let body = {};
     axios
       .delete(
-        `http://localhost:8080/api/inventory/deleteByIngredient?customerId=${user.id}&ingredientId=${item.ingredient.id}`
+        `http://35.228.238.149:8080/api/inventory/deleteByIngredient?customerId=${user.id}&ingredientId=${item.ingredient.id}`
       )
       .then((res) => {
         console.log(res.data);
@@ -53,7 +53,7 @@ const Fridge = (props) => {
     //console.log(item);
     axios
       .get(
-        `http://localhost:8080/api/recipe/forFridge/ingredients?customerId=${user.id}`
+        `http://35.228.238.149:8080/api/recipe/forFridge/ingredients?customerId=${user.id}`
       )
       .then((res) => {
         console.log(res.data);
